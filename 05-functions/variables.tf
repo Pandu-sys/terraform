@@ -1,13 +1,3 @@
-variable "environment" {
-    default = "dev"
-    type = string
-}
-
-variable "project" {
-    default = "roboshop"
-    type = string
-}
-
 variable "ami_id" {
   type        = string
   default = "ami-0220d79f3f480ecf5"
@@ -24,10 +14,23 @@ variable "instance_type" {
   }
 }
 
+variable "common_tags" {
+    default = {
+        project = "roboshop"
+        environment = "dev"
+    }
+}
+
+/* variable "ec2_tags" {
+    type = map
+    default = {
+        Name =    "terrafom-demo-1"
+    } 
+} */
 
 variable "sg_name" {
     type = string
-    default = "allow terraform"
+    default = "allow_terraform_vars"
 }
 
 variable "port" {
@@ -40,15 +43,9 @@ variable "cidr" {
     default = ["0.0.0.0/0"]
 }
 
-variable "instances" {
-    default = ["mondodb", "redis", "mysql", "rabbitmq", "catalogue", "user", "cart", "shipping", "payment", "frontend"]
-    type = list
-}
-
-variable "zone_id" {
-    default = "Z03884121IOCMF4WK7QMW"
-}
-
-variable "domain_name" {
-    default = "devopswithrani.online"
-}
+/* variable "sg_tags" {
+    type = map
+    default = {
+        Name =    "allow_terraform"
+    }
+} */
